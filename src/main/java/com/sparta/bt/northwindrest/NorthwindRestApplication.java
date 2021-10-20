@@ -8,6 +8,8 @@ public class NorthwindRestApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(NorthwindRestApplication.class, args);
+
+
     }
 
 }

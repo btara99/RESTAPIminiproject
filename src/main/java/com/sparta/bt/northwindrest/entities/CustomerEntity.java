@@ -1,6 +1,7 @@
 package com.sparta.bt.northwindrest.entities;
 
 import javax.persistence.*;
+import java.util.Arrays;
 
 @Table(name = "customers", indexes = {
         @Index(name = "CompanyName", columnList = "CompanyName"),
@@ -153,4 +154,6 @@ public class CustomerEntity {
     public void setId(String id) {
         this.id = id;
     }
+
+
 }
