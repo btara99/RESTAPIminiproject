@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 public class CustomerController {
@@ -27,27 +28,28 @@ public class CustomerController {
         if(name == null && id == null){
             return customerRepository.findAll();
         }
-        else if(name != null && id != null){ // add parameters to an array and check if they null or not
+        else if(name != null && id != null){
             for(CustomerEntity customerEntity: customerRepository.findAll()){
                 if(customerEntity.getContactName().contains(name) && customerEntity.getId().contains(id)){
                     foundCustomers.add(customerEntity);
                 }
             }
         }
-        else if(name != null || id != null){   //????
+
+        else if(name != null || id != null){   //id issue
             for(CustomerEntity customerEntity: customerRepository.findAll()){
-                if(customerEntity.getContactName().contains(name) || customerEntity.getId().contains(id)){
+                if(customerEntity.getContactName().contains(name) || customerEntity.getId() == id){
                     foundCustomers.add(customerEntity);
                 }
             }
         }
 
         if(foundCustomers.isEmpty()){  // returns 1 value of nulls to show that no customer has been found
-            //maybe set values to something
             foundCustomers.add(new CustomerEntity());
         }
         return  foundCustomers;
     }
+
 
 
 
