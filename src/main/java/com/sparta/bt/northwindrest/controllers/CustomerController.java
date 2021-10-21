@@ -21,17 +21,29 @@ public class CustomerController {
 
     @GetMapping("/customers")
     @ResponseBody
-    public List<CustomerEntity> getAllCustomers(@RequestParam(required = false)String name){
-        if(name == null){
+    public List<CustomerEntity> getAllCustomers(@RequestParam(required = false)String name,
+                                                @RequestParam(required = false)String id){
+        List<CustomerEntity> foundCustomers = new ArrayList<>();
+        if(name == null && id == null){
             return customerRepository.findAll();
         }
-        List<CustomerEntity> foundCustomers = new ArrayList<>();
-        for(CustomerEntity customerEntity: customerRepository.findAll()){
-            if(customerEntity.getContactName().contains(name)){
-                foundCustomers.add(customerEntity);
+        else if(name != null && id != null){ // add parameters to an array and check if they null or not
+            for(CustomerEntity customerEntity: customerRepository.findAll()){
+                if(customerEntity.getContactName().contains(name) && customerEntity.getId().contains(id)){
+                    foundCustomers.add(customerEntity);
+                }
             }
         }
+        else if(name != null || id != null){   //????
+            for(CustomerEntity customerEntity: customerRepository.findAll()){
+                if(customerEntity.getContactName().contains(name) || customerEntity.getId().contains(id)){
+                    foundCustomers.add(customerEntity);
+                }
+            }
+        }
+
         if(foundCustomers.isEmpty()){  // returns 1 value of nulls to show that no customer has been found
+            //maybe set values to something
             foundCustomers.add(new CustomerEntity());
         }
         return  foundCustomers;
