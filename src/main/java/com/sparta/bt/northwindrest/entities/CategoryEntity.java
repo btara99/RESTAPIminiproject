@@ -18,10 +18,10 @@ public class CategoryEntity {
 
     private byte[] picture;
 
-    @Column(name = "Picture")
-    public byte[] getPicture() {
-        return picture;
-    }
+//    @Column(name = "Picture")
+//    public byte[] getPicture() {
+//        return picture;
+//    }
 
     public void setPicture(byte[] picture) {
         this.picture = picture;

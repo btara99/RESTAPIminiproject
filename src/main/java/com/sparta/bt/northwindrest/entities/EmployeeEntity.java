@@ -64,10 +64,10 @@ public class EmployeeEntity {
         this.notes = notes;
     }
 
-    @Column(name = "Photo")
-    public byte[] getPhoto() {
-        return photo;
-    }
+//    @Column(name = "Photo")
+//    public byte[] getPhoto() {
+//        return photo;
+//    }
 
     public void setPhoto(byte[] photo) {
         this.photo = photo;
