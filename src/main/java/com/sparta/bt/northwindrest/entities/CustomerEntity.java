@@ -146,7 +146,6 @@ public class CustomerEntity {
         this.companyName = companyName;
     }
 
-    @Column(name = "CustomerID", length = 5)
     public String getId() {
         return id;
     }

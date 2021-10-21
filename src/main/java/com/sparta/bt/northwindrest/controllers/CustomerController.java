@@ -5,8 +5,8 @@ import com.sparta.bt.northwindrest.repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -19,37 +19,71 @@ public class CustomerController {
         this.customerRepository = customerRepository;
     }
 
-
     @GetMapping("/customers")
     @ResponseBody
-    public List<CustomerEntity> getAllCustomers(@RequestParam(required = false)String name,
-                                                @RequestParam(required = false)String id){
-        List<CustomerEntity> foundCustomers = new ArrayList<>();
-        if(name == null && id == null){
-            return customerRepository.findAll();
-        }
-        else if(name != null && id != null){
-            for(CustomerEntity customerEntity: customerRepository.findAll()){
-                if(customerEntity.getContactName().contains(name) && customerEntity.getId().contains(id)){
-                    foundCustomers.add(customerEntity);
-                }
-            }
-        }
-
-        else if(name != null || id != null){   //id issue
-            for(CustomerEntity customerEntity: customerRepository.findAll()){
-                if(customerEntity.getContactName().contains(name) || customerEntity.getId() == id){
-                    foundCustomers.add(customerEntity);
-                }
-            }
-        }
-
-        if(foundCustomers.isEmpty()){  // returns 1 value of nulls to show that no customer has been found
-            foundCustomers.add(new CustomerEntity());
-        }
-        return  foundCustomers;
+    public List<CustomerEntity> getAllCustomers(){
+        return customerRepository.findAll();
     }
 
+    @GetMapping(value = "/customers/id={id}")
+    public Optional<CustomerEntity> getCustomerByID(@PathVariable String id){
+        return customerRepository.findById(id);
+    }
+
+    @GetMapping("/customers/companyname={companyName}")
+    @ResponseBody
+    public List<CustomerEntity> getCustomerByCompanyName(@PathVariable String companyName){
+        return customerRepository.findAll()
+                .stream()
+                .filter(customerEntity -> customerEntity.getCompanyName().equals(companyName))
+                .collect(Collectors.toList());
+    }
+
+    @GetMapping("/customers/contactname={contactName}")
+    @ResponseBody
+    public List<CustomerEntity> getCustomerByContactName(@PathVariable String contactName){
+        return customerRepository.findAll()
+                .stream()
+                .filter(customerEntity -> customerEntity.getContactName().equals(contactName))
+                .collect(Collectors.toList());
+    }
+
+
+    @GetMapping("/customers/contacttitle={contactTitle}")
+    @ResponseBody
+    public List<CustomerEntity> getCustomerByContactTitle(@PathVariable String contactTitle){
+        return customerRepository.findAll()
+                .stream()
+                .filter(customerEntity -> customerEntity.getContactTitle().equals(contactTitle))
+                .collect(Collectors.toList());
+    }
+
+    @GetMapping("/customers/address={address}")
+    @ResponseBody
+    public List<CustomerEntity> getCustomerByAddres(@PathVariable String address){
+        return customerRepository.findAll()
+                .stream()
+                .filter(customerEntity -> customerEntity.getAddress().equals(address))
+                .collect(Collectors.toList());
+    }
+
+    @GetMapping("/customers/city={city}")
+    @ResponseBody
+    public List<CustomerEntity> getCustomerByCity(@PathVariable String city){
+        return customerRepository.findAll()
+                .stream()
+                .filter(customerEntity -> customerEntity.getCity().equals(city))
+                .collect(Collectors.toList());
+    }
+
+    @GetMapping("/customers/country={country}")
+    @ResponseBody
+    public List<CustomerEntity> getCustomerByCountry(@PathVariable String country){
+        return customerRepository.findAll()
+                .stream()
+                .filter(customerEntity -> customerEntity.getCountry().equals(country))
+                .collect(Collectors.toList());
+    }
 
 
 
