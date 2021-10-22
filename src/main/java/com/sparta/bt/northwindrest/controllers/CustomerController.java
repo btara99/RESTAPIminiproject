@@ -1,5 +1,7 @@
 package com.sparta.bt.northwindrest.controllers;
 
+import com.sparta.bt.northwindrest.DTO.CustomerDTO;
+import com.sparta.bt.northwindrest.DTO.CustomerMap;
 import com.sparta.bt.northwindrest.entities.CustomerEntity;
 import com.sparta.bt.northwindrest.repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,14 +17,22 @@ public class CustomerController {
     private CustomerRepository customerRepository;
 
     @Autowired
-    public CustomerController(CustomerRepository customerRepository) {
-        this.customerRepository = customerRepository;
-    }
+//    public CustomerController(CustomerRepository customerRepository) {
+//        this.customerRepository = customerRepository;
+//    }
+    private CustomerMap customerMap;
 
     @GetMapping("/customers")
     @ResponseBody
     public List<CustomerEntity> getAllCustomers(){
         return customerRepository.findAll();
+    }
+
+    @GetMapping("/customers/new")
+    @ResponseBody
+    public List<CustomerDTO> getAllCustomersNew(){
+        List<CustomerDTO> customerEntities = customerMap.getAllCustomers();
+        return customerEntities;
     }
 
     @GetMapping(value = "/customers/id={id}")
