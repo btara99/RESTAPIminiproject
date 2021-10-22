@@ -13,7 +13,7 @@ public class CustomerController {
 
 
     @Autowired
-    private CustomerMap customerMap; // this is now used
+    private CustomerMap customerMap;
 
 
     @GetMapping("/customers")
