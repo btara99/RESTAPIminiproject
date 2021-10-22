@@ -1,6 +1,6 @@
 package com.sparta.bt.northwindrest.controllers;
 
-import com.sparta.bt.northwindrest.DTO.SupplierDTO;
+import com.sparta.bt.northwindrest.dto.SupplierDTO;
 import com.sparta.bt.northwindrest.mapping.SupplierMap;
 import com.sparta.bt.northwindrest.repositories.SupplierRepository;
 import org.springframework.beans.factory.annotation.Autowired;

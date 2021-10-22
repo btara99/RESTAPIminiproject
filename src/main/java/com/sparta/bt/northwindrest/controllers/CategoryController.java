@@ -1,8 +1,6 @@
 package com.sparta.bt.northwindrest.controllers;
 
-import com.sparta.bt.northwindrest.DTO.CategoryDTO;
-import com.sparta.bt.northwindrest.DTO.CustomerDTO;
-import com.sparta.bt.northwindrest.entities.CategoryEntity;
+import com.sparta.bt.northwindrest.dto.CategoryDTO;
 import com.sparta.bt.northwindrest.mapping.CategoryMap;
 import com.sparta.bt.northwindrest.repositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +10,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class CategoryController {

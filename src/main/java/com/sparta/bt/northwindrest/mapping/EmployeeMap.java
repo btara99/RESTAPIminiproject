@@ -1,9 +1,7 @@
 package com.sparta.bt.northwindrest.mapping;
 
 
-import com.sparta.bt.northwindrest.DTO.CustomerDTO;
-import com.sparta.bt.northwindrest.DTO.EmployeeDTO;
-import com.sparta.bt.northwindrest.entities.CustomerEntity;
+import com.sparta.bt.northwindrest.dto.EmployeeDTO;
 import com.sparta.bt.northwindrest.entities.EmployeeEntity;
 import com.sparta.bt.northwindrest.repositories.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;

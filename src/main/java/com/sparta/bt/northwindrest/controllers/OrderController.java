@@ -1,5 +1,5 @@
 package com.sparta.bt.northwindrest.controllers;
-import com.sparta.bt.northwindrest.DTO.OrderDTO;
+import com.sparta.bt.northwindrest.dto.OrderDTO;
 import com.sparta.bt.northwindrest.mapping.OrderMap;
 import com.sparta.bt.northwindrest.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;

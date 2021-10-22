@@ -1,6 +1,4 @@
-package com.sparta.bt.northwindrest.DTO;
-
-import javax.persistence.Column;
+package com.sparta.bt.northwindrest.dto;
 
 public class ProductDTO{
     private Integer id;

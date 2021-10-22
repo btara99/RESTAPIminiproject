@@ -1,4 +1,4 @@
-package com.sparta.bt.northwindrest.DTO;
+package com.sparta.bt.northwindrest.dto;
 
 public class OrderDTO {
     private Integer id;

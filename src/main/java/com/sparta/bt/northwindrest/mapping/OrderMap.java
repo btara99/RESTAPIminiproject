@@ -1,6 +1,6 @@
 package com.sparta.bt.northwindrest.mapping;
 
-import com.sparta.bt.northwindrest.DTO.OrderDTO;
+import com.sparta.bt.northwindrest.dto.OrderDTO;
 import com.sparta.bt.northwindrest.entities.OrderEntity;
 import com.sparta.bt.northwindrest.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;

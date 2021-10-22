@@ -1,7 +1,7 @@
 package com.sparta.bt.northwindrest.mapping;
 
 
-import com.sparta.bt.northwindrest.DTO.CategoryDTO;
+import com.sparta.bt.northwindrest.dto.CategoryDTO;
 import com.sparta.bt.northwindrest.entities.CategoryEntity;
 import com.sparta.bt.northwindrest.repositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
