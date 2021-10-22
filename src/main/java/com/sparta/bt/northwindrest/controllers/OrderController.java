@@ -64,15 +64,47 @@ public class OrderController {
                 .filter(employeeEntity -> employeeEntity.getRequiredDate().equals(requiredDate))
                 .collect(Collectors.toList());
     }
+    
 
-    //FIX THIS
-    @GetMapping("/orders/shippedDate={shippedDate}")
-    public List<OrderEntity> getOrdersByShippedDate(@PathVariable String shippedDate) {
+    @GetMapping("/orders/shipVia={shipVia}")
+    public List<OrderEntity> getOrdersByShipVia(@PathVariable String shipVia) {
         return orderRepository.findAll()
                 .stream()
-                .filter(employeeEntity -> employeeEntity.getShippedDate().equals(shippedDate))
+                .filter(employeeEntity -> employeeEntity.getShipVia().equals(shipVia))
                 .collect(Collectors.toList());
     }
 
-    //SHIP via neXT
+    @GetMapping("/orders/freight={freight}")
+    public List<OrderEntity> getOrdersByFreight(@PathVariable Double freight) {
+        return orderRepository.findAll()
+                .stream()
+                .filter(employeeEntity -> employeeEntity.getFreight()==(freight))
+                .collect(Collectors.toList());
+    }
+
+    @GetMapping("/orders/shipName={shipName}")
+    public List<OrderEntity> getOrdersByShipName(@PathVariable String shipName) {
+        return orderRepository.findAll()
+                .stream()
+                .filter(employeeEntity -> employeeEntity.getShipName().equals(shipName))
+                .collect(Collectors.toList());
+    }
+
+    @GetMapping("/orders/shipCity={shipCity}")
+    public List<OrderEntity> getOrdersByShipCity(@PathVariable String shipCity) {
+        return orderRepository.findAll()
+                .stream()
+                .filter(employeeEntity -> employeeEntity.getShipCity().equals(shipCity))
+                .collect(Collectors.toList());
+    }
+
+    @GetMapping("/orders/shipCountry={shipCountry}")
+    public List<OrderEntity> getOrdersByShipCountry(@PathVariable String shipCountry) {
+        return orderRepository.findAll()
+                .stream()
+                .filter(employeeEntity -> employeeEntity.getShipCountry().equals(shipCountry))
+                .collect(Collectors.toList());
+    }
+
+
 }

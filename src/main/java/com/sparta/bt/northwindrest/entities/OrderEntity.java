@@ -29,7 +29,7 @@ public class OrderEntity {
 
     private String shipVia;
 
-    private BigDecimal freight;
+    private Double freight;
 
     private String shipName;
 
@@ -98,11 +98,11 @@ public class OrderEntity {
     }
 
     @Column(name = "Freight", precision = 19, scale = 4)
-    public BigDecimal getFreight() {
+    public double getFreight() {
         return freight;
     }
 
-    public void setFreight(BigDecimal freight) {
+    public void setFreight(Double freight) {
         this.freight = freight;
     }
 
