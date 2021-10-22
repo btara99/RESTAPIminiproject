@@ -1,9 +1,8 @@
 package com.sparta.bt.northwindrest.controllers;
 
-import com.sparta.bt.northwindrest.entities.CategoryEntity;
+import com.sparta.bt.northwindrest.DTO.EmployeeDTO;
 import com.sparta.bt.northwindrest.entities.EmployeeEntity;
-import com.sparta.bt.northwindrest.entities.ProductEntity;
-import com.sparta.bt.northwindrest.repositories.CategoryRepository;
+import com.sparta.bt.northwindrest.mapping.EmployeeMap;
 import com.sparta.bt.northwindrest.repositories.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Optional;
+
 import java.util.stream.Collectors;
 
 @RestController
@@ -21,103 +20,115 @@ public class EmployeeController {
         private EmployeeRepository employeeRepository;
 
         @Autowired
+        private EmployeeMap employeeMap;
+
         public EmployeeController(EmployeeRepository employeeRepository) {
             this.employeeRepository = employeeRepository;
         }
 
         @GetMapping("/employees")
         @ResponseBody
-        public List<EmployeeEntity> getAllemployees() {
-            return employeeRepository.findAll();
+        public List<EmployeeDTO> getAllemployees() {
+            List<EmployeeDTO> employeeEntities = employeeMap.getAllEmployees();
+            return employeeEntities;
         }
 
         @GetMapping("/employees/employeeID={employeeID}")
-        public Optional<EmployeeEntity> getEmployeesById(@PathVariable Integer employeeID) {
-            return employeeRepository.findById(employeeID);
+        public List<EmployeeDTO> getEmployeesById(@PathVariable Integer employeeID) {
+            List<EmployeeDTO> employeeEntities = employeeMap.getAllEmployees()
+                    .stream()
+                    .filter(employeeEntity -> employeeEntity.getId().equals(employeeID))
+                    .toList();
+
+            return employeeEntities;
         }
         @GetMapping("/employees/firstName={name}")
-        public List<EmployeeEntity> getEmployeesByFirstName(@PathVariable String name){
-            return employeeRepository.findAll()
+        public List<EmployeeDTO> getEmployeesByFirstName(@PathVariable String name){
+            List<EmployeeDTO> employeeEntities = employeeMap.getAllEmployees()
                     .stream()
                     .filter(employeeEntity -> employeeEntity.getFirstName().equals(name))
                     .collect(Collectors.toList());
+
+            return employeeEntities;
         }
 
         @GetMapping("/employees/lastName={name}")
-        public List<EmployeeEntity> getEmployeeLasyName(@PathVariable String name){
-            return employeeRepository.findAll()
+        public List<EmployeeDTO> getEmployeeLasyName(@PathVariable String name){
+            List<EmployeeDTO> employeeEntities = employeeMap.getAllEmployees()
                     .stream()
                     .filter(employeeEntity -> employeeEntity.getLastName().equals(name))
                     .collect(Collectors.toList());
+
+            return employeeEntities;
         }
 
         @GetMapping("/employees/title={title}")
-        public List<EmployeeEntity> getEmployeeTitle(@PathVariable String title){
-            return employeeRepository.findAll()
+        public  List<EmployeeDTO> getEmployeeTitle(@PathVariable String title){
+            List<EmployeeDTO> employeeEntities = employeeMap.getAllEmployees()
                     .stream()
                     .filter(employeeEntity -> employeeEntity.getTitle().equals(title))
                     .collect(Collectors.toList());
+
+            return employeeEntities;
         }
 
         @GetMapping("/employees/titleOfCourtesy={title}")
-        public List<EmployeeEntity> getEmployeeTitleOfCourtesy(@PathVariable String title){
-            return employeeRepository.findAll()
+        public  List<EmployeeDTO> getEmployeeTitleOfCourtesy(@PathVariable String title){
+            List<EmployeeDTO> employeeEntities = employeeMap.getAllEmployees()
                     .stream()
                     .filter(employeeEntity -> employeeEntity.getTitleOfCourtesy().equals(title))
                     .collect(Collectors.toList());
+
+            return employeeEntities;
         }
 
         @GetMapping("/employees/birthDate={birthDate}")
-        public List<EmployeeEntity> getEmployeeBirthDate(@PathVariable String birthDate){
-            return employeeRepository.findAll()
+        public  List<EmployeeDTO> getEmployeeBirthDate(@PathVariable String birthDate){
+            List<EmployeeDTO> employeeEntities = employeeMap.getAllEmployees()
                     .stream()
                     .filter(employeeEntity -> employeeEntity.getBirthDate().equals(birthDate))
                     .collect(Collectors.toList());
+
+            return employeeEntities;
         }
         @GetMapping("/employees/hireDate={hireDate}")
-        public List<EmployeeEntity> getEmployeeHireDate(@PathVariable String hireDate){
-            return employeeRepository.findAll()
+        public  List<EmployeeDTO> getEmployeeHireDate(@PathVariable String hireDate){
+            List<EmployeeDTO> employeeEntities = employeeMap.getAllEmployees()
                     .stream()
                     .filter(employeeEntity -> employeeEntity.getHireDate().equals(hireDate))
                     .collect(Collectors.toList());
+
+            return employeeEntities;
         }
-        @GetMapping("/employees/address={address}")
-        public List<EmployeeEntity> getEmployeeAddress(@PathVariable String address){
-            return employeeRepository.findAll()
-                    .stream()
-                    .filter(employeeEntity -> employeeEntity.getAddress().equals(address))
-                    .collect(Collectors.toList());
-        }
+
         @GetMapping("/employees/city={city}")
-        public List<EmployeeEntity> getEmployeeCity(@PathVariable String city){
-            return employeeRepository.findAll()
+        public  List<EmployeeDTO> getEmployeeCity(@PathVariable String city){
+            List<EmployeeDTO> employeeEntities = employeeMap.getAllEmployees()
                     .stream()
                     .filter(employeeEntity -> employeeEntity.getCity().equals(city))
                     .collect(Collectors.toList());
+
+            return employeeEntities;
         }
 
-
-        @GetMapping("/employees/postalCode={postalCode}")
-        public List<EmployeeEntity> getEmployeePostalCode(@PathVariable String postalCode){
-            return employeeRepository.findAll()
-                    .stream()
-                    .filter(employeeEntity -> employeeEntity.getPostalCode().equals(postalCode))
-                    .collect(Collectors.toList());
-        }
 
         @GetMapping("/employees/country={country}")
-        public List<EmployeeEntity> getEmployeeCountry(@PathVariable String country){
-            return employeeRepository.findAll()
+        public  List<EmployeeDTO> getEmployeeCountry(@PathVariable String country){
+            List<EmployeeDTO> employeeEntities = employeeMap.getAllEmployees()
                     .stream()
                     .filter(employeeEntity -> employeeEntity.getCountry().equals(country))
                     .collect(Collectors.toList());
+
+            return employeeEntities;
         }
 
         @GetMapping("/employees/reportsTo={reportsTo}")
-        public List<EmployeeEntity> getEmployeeReportsTo(@PathVariable Integer reportsTo){
-            return employeeRepository.findAll()
+        public  List<EmployeeDTO> getEmployeeReportsTo(@PathVariable Integer reportsTo){
+            List<EmployeeDTO> employeeEntities = employeeMap.getAllEmployees()
                     .stream()
                     .filter(employeeEntity -> employeeEntity.getReportsTo()==(reportsTo))
                     .collect(Collectors.toList());
+
+            return employeeEntities;
         }
 }
