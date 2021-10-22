@@ -17,7 +17,7 @@ public class CustomerController {
     private CustomerRepository customerRepository;
 
     @Autowired
-    private CustomerMap customerMap;
+    private CustomerMap customerMap; // this is now used
 
     public CustomerController(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
@@ -57,52 +57,61 @@ public class CustomerController {
         return customerEntities;
     }
 
-    //START FROM HERE
 
     @GetMapping("/customers/contactName={contactName}")
     @ResponseBody
-    public List<CustomerEntity> getCustomerByContactName(@PathVariable String contactName){
-        return customerRepository.findAll()
+    public List<CustomerDTO> getCustomerByContactName(@PathVariable String contactName){
+        List<CustomerDTO> customerEntities = customerMap.getAllCustomers()
                 .stream()
                 .filter(customerEntity -> customerEntity.getContactName().equals(contactName))
                 .collect(Collectors.toList());
+
+        return customerEntities;
     }
 
 
     @GetMapping("/customers/contactTitle={contactTitle}")
     @ResponseBody
-    public List<CustomerEntity> getCustomerByContactTitle(@PathVariable String contactTitle){
-        return customerRepository.findAll()
+    public List<CustomerDTO> getCustomerByContactTitle(@PathVariable String contactTitle){
+        List<CustomerDTO> customerEntities = customerMap.getAllCustomers()
                 .stream()
                 .filter(customerEntity -> customerEntity.getContactTitle().equals(contactTitle))
                 .collect(Collectors.toList());
+
+        return customerEntities;
     }
 
     @GetMapping("/customers/address={address}")
     @ResponseBody
-    public List<CustomerEntity> getCustomerByAddres(@PathVariable String address){
-        return customerRepository.findAll()
+    public List<CustomerDTO> getCustomerByAddres(@PathVariable String address){
+        List<CustomerDTO> customerEntities = customerMap.getAllCustomers()
                 .stream()
                 .filter(customerEntity -> customerEntity.getAddress().equals(address))
                 .collect(Collectors.toList());
+
+        return customerEntities;
     }
 
     @GetMapping("/customers/city={city}")
     @ResponseBody
-    public List<CustomerEntity> getCustomerByCity(@PathVariable String city){
-        return customerRepository.findAll()
+    public List<CustomerDTO> getCustomerByCity(@PathVariable String city){
+        List<CustomerDTO> customerEntities = customerMap.getAllCustomers()
                 .stream()
                 .filter(customerEntity -> customerEntity.getCity().equals(city))
                 .collect(Collectors.toList());
+
+        return customerEntities;
     }
 
     @GetMapping("/customers/country={country}")
     @ResponseBody
-    public List<CustomerEntity> getCustomerByCountry(@PathVariable String country){
-        return customerRepository.findAll()
+    public List<CustomerDTO> getCustomerByCountry(@PathVariable String country){
+        List<CustomerDTO> customerEntities = customerMap.getAllCustomers()
                 .stream()
                 .filter(customerEntity -> customerEntity.getCountry().equals(country))
                 .collect(Collectors.toList());
+
+        return customerEntities;
     }
 
 
