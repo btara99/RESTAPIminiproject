@@ -2,7 +2,6 @@ package com.sparta.bt.northwindrest.controllers;
 
 import com.sparta.bt.northwindrest.DTO.CustomerDTO;
 import com.sparta.bt.northwindrest.mapping.CustomerMap;
-import com.sparta.bt.northwindrest.repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,14 +11,9 @@ import java.util.stream.Collectors;
 @RestController
 public class CustomerController {
 
-    private CustomerRepository customerRepository;
 
     @Autowired
     private CustomerMap customerMap; // this is now used
-
-    public CustomerController(CustomerRepository customerRepository) {
-        this.customerRepository = customerRepository;
-    }
 
 
     @GetMapping("/customers")
