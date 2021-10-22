@@ -17,10 +17,11 @@ public class CustomerController {
     private CustomerRepository customerRepository;
 
     @Autowired
-//    public CustomerController(CustomerRepository customerRepository) {
-//        this.customerRepository = customerRepository;
-//    }
     private CustomerMap customerMap;
+
+    public CustomerController(CustomerRepository customerRepository) {
+        this.customerRepository = customerRepository;
+    }
 
     @GetMapping("/customers")
     @ResponseBody
@@ -36,18 +37,27 @@ public class CustomerController {
     }
 
     @GetMapping(value = "/customers/id={id}")
-    public Optional<CustomerEntity> getCustomerByID(@PathVariable String id){
-        return customerRepository.findById(id);
+    public List<CustomerDTO> getCustomerByID(@PathVariable String id){
+        List<CustomerDTO> customerEntities = customerMap.getAllCustomers()
+                .stream()
+                .filter(customerEntity -> customerEntity.getId().equals(id))
+                .toList();
+
+        return customerEntities;
     }
 
     @GetMapping("/customers/companyName={companyName}")
     @ResponseBody
-    public List<CustomerEntity> getCustomerByCompanyName(@PathVariable String companyName){
-        return customerRepository.findAll()
+    public List<CustomerDTO> getCustomerByCompanyName(@PathVariable String companyName){
+        List<CustomerDTO> customerEntities = customerMap.getAllCustomers()
                 .stream()
                 .filter(customerEntity -> customerEntity.getCompanyName().equals(companyName))
                 .collect(Collectors.toList());
+
+        return customerEntities;
     }
+
+    //START FROM HERE
 
     @GetMapping("/customers/contactName={contactName}")
     @ResponseBody

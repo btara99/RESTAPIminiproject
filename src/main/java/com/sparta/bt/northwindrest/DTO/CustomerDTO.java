@@ -63,7 +63,7 @@ public class CustomerDTO {
     public void setCity(String city) {
         this.city = city;
     }
-    
+
 
     public String getCountry() {
         return country;
