@@ -64,7 +64,7 @@ public class OrderController {
                 .filter(employeeEntity -> employeeEntity.getRequiredDate().equals(requiredDate))
                 .collect(Collectors.toList());
     }
-    
+
 
     @GetMapping("/orders/shipVia={shipVia}")
     public List<OrderEntity> getOrdersByShipVia(@PathVariable String shipVia) {

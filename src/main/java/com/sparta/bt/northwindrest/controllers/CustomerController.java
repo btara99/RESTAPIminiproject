@@ -30,7 +30,7 @@ public class CustomerController {
         return customerRepository.findById(id);
     }
 
-    @GetMapping("/customers/companyname={companyName}")
+    @GetMapping("/customers/companyName={companyName}")
     @ResponseBody
     public List<CustomerEntity> getCustomerByCompanyName(@PathVariable String companyName){
         return customerRepository.findAll()
@@ -39,7 +39,7 @@ public class CustomerController {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("/customers/contactname={contactName}")
+    @GetMapping("/customers/contactName={contactName}")
     @ResponseBody
     public List<CustomerEntity> getCustomerByContactName(@PathVariable String contactName){
         return customerRepository.findAll()
@@ -49,7 +49,7 @@ public class CustomerController {
     }
 
 
-    @GetMapping("/customers/contacttitle={contactTitle}")
+    @GetMapping("/customers/contactTitle={contactTitle}")
     @ResponseBody
     public List<CustomerEntity> getCustomerByContactTitle(@PathVariable String contactTitle){
         return customerRepository.findAll()
